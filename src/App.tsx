@@ -1,9 +1,12 @@
 import reactLogo from "./assets/react.svg";
 import viteLogo from "/vite.svg";
 import "./App.css";
+import { useSelector } from "react-redux";
+import { RootState } from "./store/store";
 
 function App() {
   let pending = false;
+  const counter = useSelector((state: RootState) => state.counter.value);
 
   return (
     <>
@@ -17,7 +20,7 @@ function App() {
       </div>
       <h1 onClick={() => console.log("hi")}>Vite + React</h1>
       <div className="card">
-        {pending ? <h2>Loading</h2> : <button>count is {1}</button>}
+        {pending ? <h2>Loading</h2> : <button>count is {counter}</button>}
         <p>
           Edit <code>src/App.tsx</code> and save to test HMR
         </p>
