@@ -1,12 +1,14 @@
 import reactLogo from "./assets/react.svg";
 import viteLogo from "/vite.svg";
 import "./App.css";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "./store/store";
+import { actions as counterAction } from "./store/slices/counterSlice";
 
 function App() {
   let pending = false;
   const counter = useSelector((state: RootState) => state.counter.value);
+  const disparcher = useDispatch();
 
   return (
     <>
@@ -18,7 +20,9 @@ function App() {
           <img src={reactLogo} className="logo react" alt="React logo" />
         </a>
       </div>
-      <h1 onClick={() => console.log("hi")}>Vite + React</h1>
+      <h1 onClick={() => disparcher(counterAction.incrementCounter(6))}>
+        Vite + React
+      </h1>
       <div className="card">
         {pending ? <h2>Loading</h2> : <button>count is {counter}</button>}
         <p>
